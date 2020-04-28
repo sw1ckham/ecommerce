@@ -2,3 +2,6 @@
 __pycache__
 *py[cod]
 env.py
+*.png
+static/
+media/

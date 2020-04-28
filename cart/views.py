@@ -7,28 +7,29 @@ def view_cart(request):
 
 
 def add_to_cart(request, id):
-    """Add a quanity of the specific product to the cart"""
-    quanity = int(request.POST.get('quanity'))
+    """Add a quantity of the specific product to the cart"""
+    quantity = int(request.POST.get('quantity'))
 
     cart = request.session.get('cart', {})
     if id in cart:
-        cart[id] = int(cart[id]) + quanity
+        cart[id] = int(cart[id]) + quantity
     else:
-        cart[id] = cart.get(id, quanity)
+        cart[id] = cart.get(id, quantity)
 
     request.session['cart'] = cart
     return redirect(reverse('index'))
 
 
 def adjust_cart(request, id):
-    """ Adjust the quanity of the specified product to the specified ammount"""
-    quanity = int(request.POST.get('quanity'))
+    """ Adjust the quantity of the specified product to the specified ammount"""
+    quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
 
-    if quanity > 0:
-        cart[id] = quanity
+    if quantity > 0:
+        cart[id] = quantity
     else:
         cart.pop(id)
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
+    
